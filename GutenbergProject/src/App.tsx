@@ -3,7 +3,7 @@ import { Book } from './Components/Book/Book'
 
 export function App() {
   return (
-    <div className='w-full flex flex-col justify-center mt-5 gap-5'>
+    <div className='w-full flex flex-col justify-center mt-5 gap-10'>
       {/*Sessão do Header*/}
       <div className='justify-center'>
         <h1 className='text-4xl font-semibold text-center'>Random Gutenberg Book</h1>
