@@ -10,7 +10,8 @@ export default {
       'Cinza2': '#D9D9D9',
       'Branco1': '#FFFFFF',
       'Branco2': '#F5F5F7',
-      'Fundo': '#EDDFE0'
+      'Fundo': '#EDDFE0',
+      'Azul': '#4B4EFF',
     },
     fontFamily: {
       'Nunito': ['Nunito', 'sans-serif'],

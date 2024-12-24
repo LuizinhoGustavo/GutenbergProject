@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios' /* Importamos a biblioteca baixada para lidar com requisições http */
+import { SyncLoader } from 'react-spinners';
+import { ChevronRight } from 'lucide-react';
 
 /* Criamos uma interface que vai ser responsável por armazenar o resultado da requisição */
 interface Author {
@@ -10,6 +12,7 @@ interface Author {
 
 interface Formats {
     "image/jpeg": string;
+    "text/html": string;
 }
 
 
@@ -21,7 +24,6 @@ interface Book {
     formats: Formats;
     download_count: number;
     image: string;
-    text: string;
     subjects: string[];
 }
 
@@ -53,20 +55,20 @@ export function Book() {
     };
 
     useEffect(() => {
-        fetchBook(1); // Carrega o livro com ID 1 inicialmente
+        fetchBook(getRandomBookId()); // Carrega o livro com ID 1 inicialmente
     }, []);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <div className='mx-auto'><SyncLoader color="#705C53" /></div>;
+    if (error) return <div className='mx-auto'>{error}</div>;
 
     if (!book) return <div>Livro não encontrado.</div>;
 
     return (
-        <div className="mx-40">
-            <div className="w-full h-1/2 bg-MarromEscuro rounded-md p-5">
-                <div className="w-full h-1/2 bg-Cinza2 p-3">
-                    <div className="w-full h-1/2 bg-Branco1  border flex flex-row">
-                        <div className="w-1/2 h-full flex flex-col justify-center text-center border-r-4 py-3 border-r-MarromEscuro">
+        <div className="mx-5 lg:mx-40">
+            <div className="w-full h-1/2 lg:bg-MarromEscuro rounded-md p-5">
+                <div className="w-full h-1/2 lg:bg-Cinza2 p-3">
+                    <div className="w-full h-1/2 bg-Branco1 border flex flex-col lg:flex-row">
+                        <div className="lg:w-1/2 w-full h-full flex flex-col justify-center mx-auto text-center lg:border-r-4 py-3 lg:border-r-MarromEscuro">
                             <h2>{book.title}</h2>
 
                             <img src={book.formats["image/jpeg"]} alt="Book Image" className="mx-auto max-h-60 my-2" />
@@ -86,14 +88,24 @@ export function Book() {
                             ))}
                         </div>
 
-                        <div className="w-1/2 h-full flex flex-col justify-between text-left p-3">
+                        <div className="w-1/2 h-full flex flex-col justify-between mx-auto text-left p-3">
                             <h2>Subjects:</h2>
                             {book.subjects.map((item) => (
                                 <li>{item}</li>
                             ))}
 
-                            <div className='flex flex-row-reverse'>
-                                <button onClick={handleRandomBook}>Buscar Livro Aleatório</button>
+                            <div className='h-full flex flex-col justify-end'>
+                                {book.languages.map((item, index) => (
+                                    <span key={index}>
+                                        languages: {item}{index < book.languages.length - 1 && ', '}
+                                    </span>
+                                ))}
+
+                                <a href={book.formats['text/html']} target='_blank' className='text-Azul text-center'>acess the text here</a>
+
+                                <div className='flex mx-auto'>
+                                    <button onClick={handleRandomBook} className='flex flex-row-reverse'><ChevronRight /> Next Book</button>
+                                </div>
                             </div>
                         </div>
                     </div>

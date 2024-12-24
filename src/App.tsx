@@ -13,7 +13,7 @@ export function App() {
       <Book />
 
       {/*Sessão da Explicação do Projeto*/}
-      <div className='mx-40 flex flex-col gap-5'>
+      <div className='lg:mx-40 mx-10 mb-10 flex flex-col gap-5'>
         <p className='font-medium justify-center text-justify text-2xl'>
           Gutenberg Project is voluntary effort to archive and share digital copies of cultural artworks (generally books). This initiative started in 1971 and contain collections of complete books that are in public domain, the goal is to distribute this books the most as possible.
         </p>
