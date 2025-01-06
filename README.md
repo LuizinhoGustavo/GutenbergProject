@@ -8,3 +8,9 @@
 * Typescript
 * Tailwind
 * Axios
+
+# Como Usar
+Clonar esse repositório
+Entrar na Pasta - cd GutenbergProject
+Baixar as depências - npm i ou npm install
+Executar o projeto - npm run dev
